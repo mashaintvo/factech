@@ -17,7 +17,7 @@ const LoginPage = () => {
     });
 
     return (
-        <section className="o-login-block">
+        <div className="o-login-block">
             <div className="o-login-block__login-wrapper">
                 <div className="o-login-block__login-inner">
                     <div className="o-login-block__input-wrapper">
@@ -76,7 +76,7 @@ const LoginPage = () => {
                     backgroundImage: "url('/assets/images/forms/wellbeing.jpg')",
                 }}
             />
-        </section>
+        </div>
     );
 };
 

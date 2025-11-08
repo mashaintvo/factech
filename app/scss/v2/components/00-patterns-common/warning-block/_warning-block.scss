@@ -1,80 +1,116 @@
 .o-warning-block {
-    border-radius: 40px;
-    background-color: #ffbf0a;
-    box-shadow: 25px 25px 30px 0 rgba(0, 0, 0, 0.25);
-    position: relative;
+    @include max-width-reduced;
+    @include fade-in(0.3s);
+    border-radius: $button-radius;
+    background-color: $grey-5;
+    box-shadow: 25px 25px 30px rgba($black, 0.25);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     min-height: 260px;
-    max-width: 380px;
-    margin: auto;
-    padding: 16px;
+    padding: 22px 16px;
+    position: relative;
     cursor: default;
+    &--warning {
+        background-color: $yellow;
+    }
+    &--info{
+        .o-warning-block__icon, .o-warning-block__button{
+            background-color: $blue;
+        }
+    }
+    &--error{
+        background-color: $blue;
+        .o-warning-block__close{
+            background-color: $red;
+        }
+        .o-warning-block__title{
+            color: $white;
+        }
+    }
 }
 .o-warning-block__icon {
-    width: 160px;
-    height: 160px;
-    margin-top: -90px;
+    @include resize-icon(200px, 200px);
     border-radius: 100%;
-    background-color: #ff1d2d;
+    background-color: $red;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: -125px;
     margin-bottom: 10px;
-    box-sizing: border-box;
+    animation: warning-pulse 2.5s ease-in-out infinite;
 }
+
 .o-warning-block__icon-img {
     object-fit: contain;
-    width: 130px;
-    height: 130px;
+    width: 170px;
+    height: 170px;
 }
 .o-warning-block__close {
-    background-color: #332d69;
-    width: 50px;
-    height: 50px;
+    @include resize-icon(50px, 50px);
     position: absolute;
     right: -10px;
     top: -10px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    font-weight: bold;
-    color: white;
+    background-color: $blue;
+    color: $white;
+    border-radius: $button-radius;
+    font-size: 25px;
+    font-weight: $brand-weight-for-title-1;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    transform: scale(1);
+    &:hover {
+        transform: scale(1.02);
+    }
 }
 .o-warning-block__title {
     margin-bottom: 10px;
-    color: #332d69 !important;
+    color: $blue;
     font-weight: 900 !important;
 }
 .o-warning-block__message {
-    border-radius: 20px;
-    background-color: white;
+    border-radius: $panels-radius;
+    background-color: $white;
     padding: 26px 18px;
     text-align: center;
+    width: 100%;
+    p {
+        color: $grey-1;
+        font-size: 15px;
+        line-height: 1.2;
+    }
 }
 .o-warning-block__button {
-    border-radius: 55px;
-    background-color: #ed2728;
+    border-radius: $button-radius;
+    background-color: $red;
     padding: 5px 16px;
     margin-top: 10px;
-    color: white;
+    color: $white;
     font-weight: 700;
     letter-spacing: 2.08px;
     font-size: 16px;
+    cursor: pointer;
+    transform: scale(1);
+
+    &:hover {
+        transform: scale(1.02);
+    }
 }
 .o-warning-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(white, 0.85);
+    @include backdrop;
+    background: rgba($white, 0.85);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
-    height: 100vh;
-    width: 100%;
-    cursor: pointer;
+}
+
+@keyframes warning-pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
 }
