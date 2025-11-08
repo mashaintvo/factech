@@ -8,12 +8,13 @@ import ArrowRighticon from '~/modules/user/shared/components/icon/ArrowRighticon
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 
-const LoginSchema = Yup.object().shape({
-    email: Yup.string().email('invalid_email').required('Please enter your email address.'),
-    password: Yup.string().required('Please enter your password.'),
-});
 const LoginPage = () => {
     const { t } = useTranslation();
+
+    const LoginSchema = Yup.object().shape({
+        email: Yup.string().email('invalid_email').required(t('fields.email.error')),
+        password: Yup.string().required(t('fields.password.error')),
+    });
 
     return (
         <section className="o-login-block">
