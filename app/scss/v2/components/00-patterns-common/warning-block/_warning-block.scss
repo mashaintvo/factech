@@ -1,5 +1,4 @@
 .o-warning-block {
-    @include max-width-reduced;
     @include fade-in(0.3s);
     border-radius: $button-radius;
     background-color: $grey-5;
@@ -11,41 +10,53 @@
     min-height: 260px;
     padding: 22px 16px;
     position: relative;
+    max-width: 80%;
     cursor: default;
+    @media (min-width: $screen-md-min) {
+        @include max-width-reduced;
+    }
     &--warning {
         background-color: $yellow;
     }
-    &--info{
-        .o-warning-block__icon, .o-warning-block__button{
+    &--info {
+        .o-warning-block__icon,
+        .o-warning-block__button {
             background-color: $blue;
         }
     }
-    &--error{
+    &--error {
         background-color: $blue;
-        .o-warning-block__close{
+        .o-warning-block__close {
             background-color: $red;
         }
-        .o-warning-block__title{
+        .o-warning-block__title {
             color: $white;
         }
     }
 }
 .o-warning-block__icon {
-    @include resize-icon(200px, 200px);
+    @include resize-icon(160px, 160px);
     border-radius: 100%;
     background-color: $red;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -125px;
+    margin-top: -90px;
     margin-bottom: 10px;
     animation: warning-pulse 2.5s ease-in-out infinite;
+
+    @media (min-width: $screen-md-min) {
+        @include resize-icon(200px, 200px);
+         margin-top: -125px;
+    }
 }
 
 .o-warning-block__icon-img {
+    @include resize-icon(140px, 140px);
     object-fit: contain;
-    width: 170px;
-    height: 170px;
+    @media (min-width: $screen-md-min) {
+        @include resize-icon(170px, 170px);
+    }
 }
 .o-warning-block__close {
     @include resize-icon(50px, 50px);
